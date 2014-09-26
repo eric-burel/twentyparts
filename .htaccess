@@ -8,18 +8,18 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-l
 RewriteCond %{REQUEST_URI} !index\.php
-RewriteRule . /twentyparts.com/index.php [L,QSA]
+RewriteRule . /v2/index.php [L,QSA]
 </IfModule>
 
 #Errors document
-ErrorDocument 400 /twentyparts.com/error/400
-ErrorDocument 401 /twentyparts.com/error/401
-ErrorDocument 403 /twentyparts.com/error/403
-ErrorDocument 404 /twentyparts.com/error/404
-ErrorDocument 405 /twentyparts.com/error/405
-ErrorDocument 500 /twentyparts.com/error/500
-ErrorDocument 502 /twentyparts.com/error/502
-ErrorDocument 503 /twentyparts.com/error/503
+ErrorDocument 400 /v2/error/400
+ErrorDocument 401 /v2/error/401
+ErrorDocument 403 /v2/error/403
+ErrorDocument 404 /v2/error/404
+ErrorDocument 405 /v2/error/405
+ErrorDocument 500 /v2/error/500
+ErrorDocument 502 /v2/error/502
+ErrorDocument 503 /v2/error/503
 
 # Protect hidden files from being viewed
 <Files .*>
