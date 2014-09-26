@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <option>
+        <name>refreshUrl</name><!-- url name for refresh (flush) captcha -->
+        <value>captcha</value>
+    </option>
+    <option>
+        <name>charsList</name><!-- list of chars, for generate random string, optional : default is "alphanumeric type" -->
+        <value>abcdefghijklmnopqrstuvwxyz0123456789</value>
+    </option>
+    <option>
+        <name>length</name><!-- length of captcha (int positif), optional:  default is "6" -->
+        <value>6</value>
+    </option>
+    <!-- AUDIO -->
+    <option>
+        <name>audio</name><!-- true/false , optional : default is "false" -->
+        <value>true</value>
+    </option>
+    <option>
+        <name>audioUrl</name><!-- url name for get audio -->
+        <value>captcha</value>
+    </option>
+    <option>
+        <name>audioLangDirectory</name><!-- Language, need all charsList wav files, required -->
+        <value>[PATH_DATA]captcha[DS]audio[DS]</value>
+    </option>
+    <option>
+        <name>audioLettersGapMin</name><!-- min value for random silence  between letters, optional default is "0" -->
+        <value>0</value>
+    </option>
+    <option>
+        <name>audioLettersGapMax</name><!-- max value for random silence  between letters, optional default is "600" -->
+        <value>600</value>
+    </option>
+                
+                
+    <!-- Noising audio-->
+    <option>
+        <name>audioNoise</name><!-- true/false , optional : default is "false" -->
+        <value>true</value>
+    </option>
+    <option>
+        <name>audioNoiseFile</name><!-- audioNoise need a valid wav file, required -->
+        <value>[PATH_DATA]captcha[DS]audio[DS]noise[DS]crowd-applause.wav</value>
+    </option>
+    <option>
+        <name>audioNoiseMixNormalization</name><!-- value: int or float, optional default is 0.6 (See http://www.voegler.eu/pub/audio/) -->
+        <value>0.6</value>
+    </option>
+    <option>
+        <name>audioDegrade</name><!-- true/false (degrade sound by parasite), optional : default is "false" -->
+        <value>true</value>
+    </option>
+</root>

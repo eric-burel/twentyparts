@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<crawlers>
+    <crawler>
+        <userAgent>Googlebot/2.1 (+http://www.google.com/bot.html)</userAgent>
+    </crawler>
+    <crawler>
+        <userAgent>Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)</userAgent>
+    </crawler>
+    <crawler>
+        <userAgent>Googlebot-Image/1.0</userAgent>
+    </crawler>
+    <crawler>
+        <userAgent>DoCoMo/2.0 N905i(c100;TB;W24H16) (compatible; Googlebot-Mobile/2.1; +http://www.google.com/bot.html)</userAgent>
+    </crawler>
+    <crawler>
+        <userAgent>Mozilla/5.0 (compatible; bingbot/2.0 +http://www.bing.com/bingbot.htm)</userAgent>
+    </crawler>
+    <crawler>
+        <userAgent>msnbot</userAgent>
+    </crawler>
+    <crawler>
+        <userAgent>yahoo</userAgent>
+    </crawler>
+    <crawler>
+        <userAgent>SurveyBot</userAgent>
+    </crawler>
+    <crawler>
+        <userAgent>FaceBook</userAgent>
+    </crawler>
+</crawlers>

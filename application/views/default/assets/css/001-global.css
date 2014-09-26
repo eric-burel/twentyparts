@@ -1,0 +1,9 @@
+.hide{
+    display: none;
+}
+.ucfirst:first-letter {
+    text-transform: uppercase;
+}
+.capitalize {
+    text-transform: uppercase;
+}

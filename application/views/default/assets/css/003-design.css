@@ -1,0 +1,717 @@
+/* Fonts */
+/*@font-face {
+font-family: "Ma_Super_Fonte"; 	
+src: url('[HOSTNAME]application/views/default/assets/fonts/SCRIPTIN.ttf');
+}*/
+
+@font-face { /* Définition d'une nouvelle police nommée LearningCurveProRegular */
+   font-family: 'Lato';
+   src: url('[HOSTNAME]application/views/default/assets/fonts/Lato/Lato-Regular.ttf') format('truetype');
+}
+@font-face { /* Définition d'une nouvelle police nommée LearningCurveProRegular */
+   font-family: 'Noto_Sans';
+   src: url('[HOSTNAME]application/views/default/assets/fonts/Noto_Sans/NotoSans-Regular.ttf') format('truetype');
+}
+@font-face { /* Définition d'une nouvelle police nommée LearningCurveProRegular */
+   font-family: 'Open_Sans';
+   src: url('[HOSTNAME]application/views/default/assets/fonts/Open_Sans/OpenSans-Regular.ttf') format('truetype');
+}
+
+/* Generals */
+.button
+{
+   padding-right: 2px;
+   /* a enlever ?*/
+   margin-bottom: 10px;
+
+   text-align: center;
+   font-size: 14px;
+   font-weight: bold;
+   /* Same colors as part_read*/
+   color: #F0F0F0;
+   background-color: #A01010;
+   box-shadow: 1px 1px 1px #606060;
+}
+
+.button:hover
+{
+   background-color: #B02020;
+   cursor: pointer;
+}
+
+article
+{
+   display: inline-block;
+   vertical-align: top;
+   padding: 5px;
+   text-align:justify;
+}
+
+a:link
+{
+   color: #901010;
+   font-weight:bold;
+   text-decoration: none;
+}
+
+a:visited
+{
+   font-weight:normal;
+   color: #B03030;
+}
+
+a:hover
+{
+   color: #D05050;
+}
+
+h1{
+   color: #801010;
+   font-weight: bold;
+   font-size: 30px;
+}
+
+h2{
+   color: #a02020;
+   font-size: 22px;
+   font-style:italic;
+}
+
+h3{
+   color: #801010;
+   font-size: 18px;
+}
+
+h4{
+   color: #a02020;
+
+
+}
+
+/***** Disposition *****/
+
+body
+{
+   min-height: 600px;
+   margin-right: auto;
+   margin-left: auto;
+   margin-bottom: 8%;
+   margin-top: 10px;
+   /*background-color: #F0F0F0;*/
+   background-color: #DFDFDF;
+   color: #101010;
+
+   font-family:   'Lato', 'Noto_Sans', 'Open_Sans', 'Times New Roman', Arial, Verdana, sans-serif;
+   font-size: 16px;
+}
+
+
+.content
+{
+   min-height: 605px;
+   width: 800px;
+   padding: 10px;
+   margin-right: auto;
+   margin-left: auto;
+   /*background-color: #DFDFDF;*/
+   background-color: #F0F0F0;
+   border-style: solid;
+   border-width: 1px;
+   border-color:#606060;
+   box-shadow: 5px 5px 5px #606060;
+
+}
+.adverts{
+   padding: 0px;
+   width: 728px;
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: 5px;
+   margin-bottom: 5px;
+
+   border-style: solid;
+   border-width: 1px;
+   border-color:#606060;
+   box-shadow: 5px 5px 5px #606060;
+}
+
+.adverts a
+{
+   margin: 0px;
+}
+#header
+{
+   width: 800px;
+   height: 150px;
+
+
+   margin-bottom: 10px;
+
+   background-color: #A02020;
+}
+
+.left_menu
+{
+   display: inline-block;
+
+   width: 160px;
+   min-width: 120px;
+
+   margin-right: 10px;
+   margin-top: 10px;
+   padding: 5px;
+}
+
+.left_menu_button{
+   width: 100%;
+}
+
+#your_stories{
+   font-size: 18px;
+}
+#logo
+{	
+   padding: 0px;
+   margin: 0px;
+}
+
+#logo_img{
+   margin: 0px;
+}
+
+#logo_text_div
+{
+   display: inline-block;
+   height: 120px;
+   width: auto;
+}
+#logo_text
+{
+   margin-bottom: 0px;
+   margin-top: 0px;
+   font-size: 95px;
+   font-family: Georgia, "Times New Roman";
+   color: #DFDFDF;
+}
+
+
+/***** Navigation *****/
+#nav
+{
+   width: 100%;
+   min-width: 400px;
+   margin-top: 10px;
+   padding: 2px;
+}
+#nav_table{
+   width: 100%;
+   margin: auto;
+}
+.nav_button
+{
+   display: inline-block;
+
+   width: 115px;
+   height: 30px;
+
+   padding-right: 5px;
+   padding-left: 5px;
+   padding-top:6px;
+   margin: auto;
+
+   font-size: 18px;
+}
+
+
+
+.nav_text
+{
+   margin: auto;
+   padding: 0px;
+}
+
+
+/*** Social media *****/
+.addthis_sharing_toolbox
+{
+   padding: 5px;
+   margin-top: 10px;
+
+}
+
+/***** Part menu *****/
+#part
+{
+   width: 100%;
+   height: 30px;
+   min-width: 600px;
+   background-color: rgba(32, 32, 32, 0.3);
+   bottom: 4%;
+   position: fixed;
+}
+
+.part_button
+{
+   display: inline-block;
+   vertical-align: middle;
+
+   width: 30px;
+   height: 18px;
+   padding-top: 6px;
+   padding-bottom: 6px;
+   padding-right: 0px;
+   padding-left: 0px;
+   text-align: center;
+   margin-bottom: 0px;
+   margin-top: 0px;
+   margin-right: 2px;
+   margin-left: 0px;
+}
+
+
+.part_link:link
+{
+   color: #F0F0F0;
+   font-weight:bold;
+   text-decoration: none;
+   font-size: 18px;
+
+   margin-bottom: 0px;
+   margin-top: 0px;
+   margin-right: 0px;
+   margin-left: 0px;
+}
+
+.part_link:visited
+{
+   color: #DFDFDF; 
+   font-weight:normal;
+}
+
+.part_link:hover
+{
+   color: #F0F0F0;
+}
+
+/***/
+.part_read
+{
+   background-color: #D04040;
+}
+.part_read:hover
+{
+   /*+16*/
+   background-color: #B03030;
+}
+
+.part_write
+{
+   width: 18px;
+   height: 18px;
+   padding: 4px;
+   background-color: #707070;
+   border-width: 2px;
+   border-style: dashed;
+   border-color: #404040;
+}
+.part_write:hover
+{
+   /*-16*/
+   background-color: #808080;
+   border-color: #505050;
+}
+
+.part_edit
+{
+   background-color: #3399CC;
+}
+.part_edit:hover
+{
+   background-color: #43A9DC;
+}
+
+/***** Inputs *****/
+input, textarea
+{
+   border: 0px;
+   box-shadow: 1px 1px 1px #606060;
+}
+
+input:hover, textarea:hover
+{
+   background-color: #EEDDDD;
+}
+
+input:focus, textarea:focus
+{
+   background-color: #FFEEEE;
+}
+
+input[type="submit"]
+{
+   font-weight: bold;
+   /* background-color: #F05050;*/
+   color: #F0F0F0;
+   cursor: pointer;
+}
+
+input[type="submit"]:hover
+{
+   /*  background-color: #F09090;*/
+}
+
+/* Edition buttons are blue */
+.edit_input
+{
+   background-color: #3399CC;
+}
+.edit_input:hover
+{
+   background-color: #43A9DC;
+}
+
+/***** Forms design *****/
+
+.form_label
+{
+   font-weight: bold;  
+   font-family: Arial, Georgia;
+   color: #303030;
+}
+.form_table
+{
+   margin: auto;
+   text-align: right;
+}
+
+.write_table
+{
+   width : 100%;
+   margin: auto;
+}
+.delete_table{
+   width: 100%;
+   margin: auto;
+   text-align: right;
+}
+.category_table{
+   width: 100%;
+   margin: auto;
+   text-align: right;
+}
+
+.settings_table{
+   width : 400px;
+}
+
+.contacts_table{
+   width: 350px;
+}
+.forgotten_table{
+   width: 350px;
+}
+
+.vote_table{
+   width: 100%;
+   border-width: 2px;
+   border-color: #303030;
+   border-style:solid;
+
+   color: #303030;
+
+   font-weight: bold;
+   text-align: left;
+   margin: auto;
+   padding-right: 2px;
+   padding-left: 5px;
+}
+
+#inscription_form
+{
+   text-align: center;
+   margin : auto;
+}
+#settings_form
+{
+   text-align: center;
+   margin : auto;
+}
+#contacts_form
+{
+   text-align: center;
+   margin: auto;
+}
+#forgotten_form
+{
+   text-align: center;
+   margin: auto;
+}
+
+.write_form
+{
+   width: 100%;
+}
+
+.write_form textarea
+{
+   color : #202020;
+   font-size: 16px;
+   font-family: 'Times New Roman';
+   resize: vertical;
+   overflow: hidden;
+   text-indent: 3em;
+   letter-spacing: 0.1pt;
+}
+
+#create_form
+{
+   text-align: center;
+}
+#vote_form{
+   width: 100%;
+   margin: 0px;
+}
+
+#inscription_form input[type="submit"]
+{
+   margin-top: 10px;
+   width : 100%;
+}
+#settings_form input[type="submit"]
+{
+   margin-top: 10px;
+   width : 100%;
+}
+#contacts_form input[type="submit"]
+{
+   margin-top: 10px;
+   width : 100%;
+}
+#forgotten_form input[type="submit"]
+{
+   margin-top: 10px;
+   width : 100%;
+}
+
+#connect_form input[type="submit"]
+{
+   margin-top: 10px;
+   width : 100%;
+}
+#vote_form input[type="submit"]
+{
+   width : 100%;
+   margin: 0px;
+   font-size: 18px;
+}
+
+.write_form input[type="submit"]
+{
+   margin-top: 10px;
+   width : 100%;
+}
+
+
+.category_form select
+{
+   text-align: center;
+   width: 350px;
+}
+.category_form input[type="submit"]
+{
+   text-align: center;
+   width: 350px;
+}
+
+.delete_form input[type="submit"]
+{
+   text-align: center;
+   width: 350px;
+}
+
+#create_form input, select, textarea
+{
+   width:100%;
+}
+
+.forgotten_link
+{
+
+   font-weight: bold;  
+   font-family: Arial, Georgia;
+
+}
+
+/***** Connection bar *****/
+.username{
+   float: left;
+}
+#connect_bar_table
+{
+   width: 100%;
+   text-align: center;
+}
+
+.lang{
+   text-align: left;
+   margin-right: 10px;
+   margin-left: 2px;
+}
+#connect_bar
+{
+   width: 100%;
+   height: 25px;
+   font-weight: bold;  
+   font-family: Arial, Georgia;
+}
+
+#connect_bar input
+{
+   width: 150px;
+}
+
+#connect_button
+{
+
+   margin-bottom: 0px;
+   width: 100%;
+}
+
+.logout_link
+{
+   float: right;
+   margin-right: 10px;
+}
+
+.part_author
+{
+   font-weight: bold;
+   color: #303030;
+}
+
+/***** Read page *****/
+
+/* Stories.php */
+.create_box
+{
+   width: 550px;
+   padding: 4px;
+   margin: auto;
+   margin-bottom: 10px;
+   background-color: #707070;
+   border-width: 2px;
+   border-style: dashed;
+   border-color: #404040;
+
+   color: #F0F0F0;
+   text-align: center;
+}
+.create_box:hover
+{
+   background-color: #808080;
+   border-color: #505050;
+}
+
+/*.create_link{
+   color: 
+}*/
+
+#story_list
+{
+   width: auto;
+}
+
+.story_link
+{
+
+}
+
+.title{
+   text-align: center;
+}
+
+.creator{
+   text-align: right;
+   font-weight: bold;
+   font-size: 18px;
+   margin-right: 100px;
+}
+.description{
+   font-style: italic;
+   text-align: justify;
+   text-indent: 3em;
+}
+
+.part_text
+{
+   letter-spacing: 0.1pt;
+   text-indent: 3em;
+}
+
+/***** Story page *****/
+.story_link
+{
+   margin: 0px;
+}
+.metadata
+{
+   font-size: 12px;
+   color: #202020;
+   margin: 0px;
+   text-align: right;
+}
+
+/***** Error messages *****/
+.error_box
+{
+   width: 95%;
+   padding: 5px;
+   margin-right: auto;
+   margin-left:  auto;
+   margin-top: 10px;
+   margin-bottom: auto;
+   background-color: #E05050;
+   color: #F0F0F0;
+   border-width: 3px;
+   border-style: dashed;
+   border-color: #D0D0D0;
+
+   font-weight: bold;
+   text-align: center;
+}
+
+
+/* Messages */
+.message_box
+{
+   width: 95%;
+   padding: 5px;
+   margin-right: auto;
+   margin-left:  auto;
+   margin-top: 10px;
+   margin-bottom: auto;
+   background-color: #3399CC;
+   color: #F0F0F0;
+   border-width: 3px;
+   border-style: dashed;
+   border-color: #D0D0D0;
+
+   font-weight: bold;
+   text-align: center;
+}
+
+
+/***** PARTNERS PAGE *****/
+.our_banners{
+   text-align: center;
+   margin: auto;
+   padding: 0px;
+   margin-bottom: 20px;
+}
+.our_banners textarea
+{
+   resize: none;
+   overflow: hidden;
+   margin: 0px;
+   width: 750px;
+}

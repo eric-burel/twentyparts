@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vars>
+    <site_name>Twenty Parts - 20 façons de penser</site_name>
+    <site_slogan></site_slogan>
+    <site_desc>Ecrivez ou lisez des histoires créative sur TwentyParts.com . Chaque histoire est divisée en 20 parties indépendantes, et chaque partie peut être écrite par un auteur différent. Inscription facultative.</site_desc>
+    <site_keywords>histoire, nouvelle, créative, 20, vingt, auteur, texte, partie, écrire, lire</site_keywords>
+    <!-- errors -->
+    <e_fatal>fatal</e_fatal>
+    <e_error>erreur</e_error>
+    <e_warning>alerte</e_warning>
+    <e_parse>analyse</e_parse>
+    <e_notice>note</e_notice>
+    <e_core_error>interne</e_core_error>
+    <e_core_warning>note interne</e_core_warning>
+    <e_compile_error>compilation</e_compile_error>
+    <e_compile_warning>alerte compilation</e_compile_warning>
+    <e_user_error>erreur utilisateur</e_user_error>
+    <e_user_warning>alerte utilisateur</e_user_warning>
+    <e_user_notice>note utilisateur</e_user_notice>
+    <e_strict>suggestion</e_strict>
+    <e_recoverable_error>erreur récupérable</e_recoverable_error>
+    <e_deprecated>alerte d'exécution</e_deprecated>
+    <e_user_deprecated>alerte d'exécution utilisateur</e_user_deprecated>
+    <e_unknown>erreur inconnue</e_unknown>
+    <e_exception>exception</e_exception>
+    <!-- debugger template -->
+    <debugger_title>oupsss</debugger_title>
+    <debugger_header>une erreur s'est produite</debugger_header>
+    <debugger_section>debug</debugger_section>
+    <debugger_type>catégorie</debugger_type>
+    <debugger_code>code</debugger_code>
+    <debugger_file>fichier</debugger_file>
+    <debugger_line>ligne</debugger_line>
+    <debugger_message>message</debugger_message>
+    <debugger_trace>trace</debugger_trace>
+    
+    
+    <frontoffice_1>pseudonyme</frontoffice_1>
+    <frontoffice_2>mot de passe</frontoffice_2>
+    <frontoffice_3>connexion</frontoffice_3>
+    <frontoffice_4>index</frontoffice_4>
+    <frontoffice_5>histoires</frontoffice_5>
+    <frontoffice_6>f.a.q</frontoffice_6>
+    <frontoffice_7>partenaires</frontoffice_7>
+    <frontoffice_8>réglages</frontoffice_8>
+    <frontoffice_9>contacts</frontoffice_9>
+    <frontoffice_3>connexion</frontoffice_3>
+    <frontoffice_3>connexion</frontoffice_3>
+    <frontoffice_3>connexion</frontoffice_3>
+    <frontoffice_3>connexion</frontoffice_3>
+</vars>

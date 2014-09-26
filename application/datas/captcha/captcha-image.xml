@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <option>
+        <name>refreshUrl</name><!-- url name for refresh (flush) captcha -->
+        <value>captcha</value>
+    </option>
+    <option>
+        <name>charsList</name><!-- list of chars, for generate random string, optional : default is "alphanumeric type" -->
+        <value>abcdefghijklmnopqrstuvwxyz0123456789</value>
+    </option>
+    <option>
+        <name>length</name><!-- length of captcha (int positif), optional:  default is "6" -->
+        <value>6</value>
+    </option>
+                
+                
+                
+    <!-- IMAGE -->
+    <option>
+        <name>image</name><!-- true/false , optional : default is "false" -->
+        <value>true</value>
+    </option>
+    <option>
+        <name>imageFormat</name><!-- png/jpg/gif required (when image is true)-->
+        <value>png</value>
+    </option>
+    <option>
+        <name>imageUrl</name><!-- url name for get image -->
+        <value>captcha</value>
+    </option>
+    <option>
+        <name>imageWidth</name><!-- width (int), required (when image is true)-->
+        <value>300</value>
+    </option>
+    <option>
+        <name>imageHeight</name><!-- height (int), required (when image is true)-->
+        <value>100</value>
+    </option>
+                
+    <!-- Font -->
+    <option>
+        <name>imageFontFile</name><!-- font filename (ttf mime type), required (when image is true)-->
+        <value>[PATH_DATA]captcha[DS]font[DS]arial.ttf</value>
+    </option>
+    <option>
+        <name>imageFontSize</name><!-- font size (int), optional : default is "50" -->
+        <value>50</value>
+    </option>
+    <option>
+        <name>imageFontAngle</name><!-- font angle (int/float : positif/negative), optional : default is "0" -->
+        <value>0</value>
+    </option>
+    <option>
+        <name>imageFontColor</name><!-- font color (rgb(separate by /) or hexadecimal (3 or 6, with # or not), optional default is rgb "0/0/0" -->
+        <value>0/0/0</value><!-- rgb-->
+        <!--<value>ff6600</value>--><!-- hexa 6-->
+        <!--<value>#f60</value>--><!-- hexa 3-->
+    </option>
+                
+    <!-- Background-->
+    <option>
+        <name>imageBackground</name><!-- 0 = color, 1 = by file, optional : default is "0"-->
+        <value>0</value>
+    </option>
+    <option>
+    <!-- 
+            When imageBackground = 0 : rgb(use separator /)or hexa(3 or 6, with # or not), optional default is  "255/255/255"
+            When imageBackground = 1 : file, required
+    -->
+        <name>imageBackgroundOption</name>
+        <value>255/255/255</value><!-- rgb-->
+        <!--<value>ff6600</value>--><!-- hexa 6-->
+        <!--<value>#f60</value>--><!-- hexa 3-->
+        <!--<value>[PATH_DATA]captcha[DS]communist.jpg</value>--><!-- file-->
+    </option>
+                
+    <!-- Noising: taches sur l'image-->
+    <option>
+        <name>imageNoise</name><!-- true/false , optional : default is "false" -->
+        <value>true</value>
+    </option>
+    <option>
+        <name>imageNoiseCount</name><!-- count noise, optional default is : "50" -->
+        <value>50</value>
+    </option>
+    <option>
+        <name>imageNoiseMinSize</name><!-- Min Size for noise (> 0), optional default is "1" -->
+        <value>1</value>
+    </option>
+    <option>
+        <name>imageNoiseMaxSize</name><!-- Max Size for noise (< imageNoiseMinSize), optional default is "10" -->
+        <value>10</value>
+    </option>
+    <option>
+    <!-- 
+        0 = All noises have same color 
+        1 = Colors by noise 
+        2 = Random colors by noise 
+  
+    optional default is "2"
+    -->
+        <name>imageNoiseColorType</name>
+        <value>2</value>
+    </option>
+    <option>
+    <!-- 
+        When NoiseColorType = 0 : rgb(use separator /)or hexa(3 or 6, with # or not), optional default is  "0/0/0"
+        When NoiseColorType = 1 : set colors separate by "-" for all noises, required
+        When NoiseColorType = 2 : not used (random)
+    -->
+        <name>imageNoiseColorValue</name>
+        <value>0/0/0</value>
+        <!--<value>255/255/0-ffffff-#fff</value>--><!-- for four noises-->
+    </option>
+                
+    <!-- Lines -->
+    <!-- vertical -->
+    <option>
+        <name>imageVerticalLine</name><!-- count of vertical line (int and > 0), optional default is "0" -->
+        <value>3</value>
+    </option>
+    <!-- 
+        0 = All vertical lines have same color 
+        1 = Colors by vertical line
+        2 = Random colors by vertical line 
+  
+    optional default is "2"
+    -->
+    <option>
+        <name>imageVerticalLineColorType</name>
+        <value>2</value>
+    </option>
+    <!-- 
+        When VerticalLineColorType = 0 : rgb(use separator /)or hexa(3 or 6, with # or not), optional default is  "0/0/0"
+        When VerticalLineColorType = 1 : set colors separate by "-" for all vertical lines, required
+        When VerticalLineColorType = 2 : not used (random)
+    -->
+    <option>
+        <name>imageVerticalLineColorValue</name>
+        <value>0/0/0</value>
+        <!--<value>255/255/0-ffffff-#fff</value>--><!-- for four vertical lines-->
+    </option>
+    <option>
+        <name>imageVerticalLineThickness</name><!-- Thickness : null =  no set thickness, 0 =  random, else thickness value, optional default is : "null"-->
+        <value>0</value>
+    </option>
+    <!-- horizontal -->
+    <option>
+        <name>imageHorizontalLine</name><!-- count of horizontal line (int and > 0), optional default is "0" -->
+        <value>3</value>
+    </option>
+    <!-- 
+        0 = All vertical lines have same color 
+        1 = Colors by vertical line
+        2 = Random colors by hozizontal line 
+  
+    optional default is "2"
+    -->
+    <option>
+        <name>imageHorizontalLineColorType</name>
+        <value>2</value>
+    </option>
+    <!-- 
+         When HorizontalLineColorType = 0 : rgb(use separator /)or hexa(3 or 6, with # or not), optional default is  "0/0/0"
+         When HorizontalLineColorType = 1 : set colors separate by "-" for all horizontal lines, required
+         When HorizontalLineColorType = 2 : not used (random)
+    -->
+    <option>
+        <name>imageHorizontalLineColorValue</name>
+        <value>0/0/0</value>
+        <!--<value>255/255/0-ffffff-#fff</value>--><!-- for four horizontal lines-->
+    </option>
+    <option>
+        <name>imageHorizontalLineThickness</name><!-- Thickness : null =  no set thickness, 0 =  random, else thickness value, optional default is : "null"-->
+        <value>0</value>
+    </option>
+    <!-- Déformation de l'image (pas disponible encore)-->
+    <option>
+        <name>imageDistortion</name><!-- 0 = none, 0.75 = normal, 1.0 = very high distortion (optional) -->
+        <value>0.75</value>
+    </option>
+</root>
