@@ -356,7 +356,7 @@ class Router {
         $args = preg_split('#(\(.+\))#iuU', $rule);
         foreach ($args as $key => $value) {
             //match by lang
-            if ($lang !== null && $key == 0 && ($lang . $varsSeparator == $value || $lang == $value))
+            if ($lang !== null && $key == 0 && (stripos($value, $lang . $varsSeparator) !== false  || $lang . $varsSeparator == $value || $lang == $value))
                 $matched = true;
             // only one rule or rule number
             elseif (count($route->rules) == 1 || $ruleNumber === $ruleCount)

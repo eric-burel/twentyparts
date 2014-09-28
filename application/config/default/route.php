@@ -8,6 +8,9 @@ $config = array(
             'en_EN'
         ),
         'controller' => 'index',
+        'methods' => array(
+            'page' => array('home'),
+        )
     ),
     'captcha' => array(
         'regex' => true,
@@ -49,6 +52,38 @@ $config = array(
         'controller' => 'error',
         'methods' => array(
             'debugger' => array('[[1]]')
+        )
+    ),
+    'page' => array(
+        'regex' => true,
+        'rules' => array(
+            'fr_FR/([a-zA-Z0-9_-]+)',
+            'en_EN/([a-zA-Z0-9_-]+)',
+        ),
+        'controller' => 'index',
+        'methods' => array(
+            'page' => array('[[1]]')
+        )
+    ),
+    'new' => array(
+        'regex' => true,
+        'rules' => array(
+            'fr_FR/news/([a-zA-Z0-9_-]+)',
+            'en_EN/news/([a-zA-Z0-9_-]+)',
+        ),
+        'controller' => 'index',
+        'methods' => array(
+            'newView' => array('[[1]]')
+        )
+    ),
+    'contact' => array(
+        'rules' => array(
+            'contact'
+        ),
+        'controller' => 'index',
+        'methods' => array(
+            'setAjax' => true,
+            'contact'
         )
     ),
 );

@@ -17,6 +17,13 @@ $config = array(
         'gc' => 'time',
         'gcOption' => 86400,
         'groups' => 'template' // group list separated by ","
-    )
+    ),
+    'bdd' => array(
+        'adaptater' => 'file', //file/apc
+        'prefix' => '_', // prefix string
+        'path' => '[PATH_CACHE_BDD]',
+        'gc' => 'time', // Garbage collection : time/number => toutes les x secondes, ou toutes les x requests
+        'gcOption' => 86400, // seconds/request
+    ),
 );
 ?>

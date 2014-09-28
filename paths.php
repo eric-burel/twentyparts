@@ -30,7 +30,7 @@ define('PATH_TMP', PATH_APP . 'tmp' . DS);
 // Cache paths
 define('PATH_CACHE_CORE', PATH_CACHE . 'core' . DS);
 define('PATH_CACHE_DEFAULT', PATH_CACHE . 'default' . DS);
-
+define('PATH_CACHE_BDD', PATH_CACHE . 'bdd' . DS);
 //Templates
 define('PATH_TEMPLATE_DEFAULT', PATH_VIEWS . 'default' . DS);
 define('PATH_TEMPLATE_DEFAULT_ASSETS', PATH_TEMPLATE_DEFAULT . 'assets' . DS);

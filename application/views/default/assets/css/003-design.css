@@ -405,7 +405,7 @@ input[type="submit"]:hover
 }
 
 .contacts_table{
-   width: 350px;
+  /* width: 350px;*/
 }
 .forgotten_table{
    width: 350px;
