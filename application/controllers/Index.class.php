@@ -151,7 +151,8 @@ class Index extends Controller {
 
     private function _defaultPage($slug) {
         switch ($slug) {
-            case 'home' || 'contact':
+            case 'home':
+            case 'contact':
                 //init security
                 $security = Security::getSecurity(Security::TYPE_FORM);
                 $crsf = $security->getProtection('form1', Form::PROTECTION_CSRF);

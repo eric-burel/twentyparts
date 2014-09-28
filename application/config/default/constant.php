@@ -28,6 +28,6 @@ $config = array(
     'LOGGER_CACHE' => 'core', //cache name
     'LOGGER_ERROR' => true,
     //application
-    'CONTACT_EMAIL' => '[ADMIN_NAME]', // administrator email
+    'CONTACT_EMAIL' => '[ADMIN_EMAIL]', // administrator email
 );
 ?>
