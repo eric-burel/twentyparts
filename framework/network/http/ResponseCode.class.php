@@ -5,6 +5,7 @@
 namespace framework\network\http;
 
 abstract class ResponseCode {
+
     // [Informational 1xx]
 
     const CODE_CONTINUE = 100;
@@ -170,19 +171,19 @@ abstract class ResponseCode {
         599 => '599 Network connect timeout error (Unknown)'
     );
 
-    public static function getMessageForCode($code, $checkCode = true) {
+    public static function getMessage($code, $checkCode = true) {
         if (!is_int($code))
             throw new \Exception('HTTP Response code must be an integer');
         if (!is_bool($checkCode))
             throw new \Exception('checkCode parameter must be an boolean');
 
-        if ($checkCode && !self::existsCode($code))
+        if ($checkCode && !self::isValid($code))
             throw new \Exception('HTTP Response code :  "' . $code . '" doesn\'t exist');
 
         return self::$_messages[$code];
     }
 
-    public static function existsCode($code) {
+    public static function isValid($code) {
         return array_key_exists((string) $code, self::$_messages);
     }
 
@@ -193,10 +194,8 @@ abstract class ResponseCode {
     public static function canHaveBody($code) {
         return
                 // True if not in 100s
-                ($code < self::CODE_CONTINUE || $code >= self::CODE_OK)
-                && // and not 204 NO CONTENT
-                $code != self::CODE_NO_CONTENT
-                && // and not 304 NOT MODIFIED
+                ($code < self::CODE_CONTINUE || $code >= self::CODE_OK) && // and not 204 NO CONTENT
+                $code != self::CODE_NO_CONTENT && // and not 304 NOT MODIFIED
                 $code != self::CODE_NOT_MODIFIED;
     }
 

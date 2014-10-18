@@ -15,7 +15,7 @@ class Security extends Loader {
         foreach ($security as $type => $datas) {
             $securityData = array();
             if (isset($datas['autorun']) && is_string($datas['autorun']))
-                $securityData['debug'] = Tools::castValue($datas['autorun']);
+                $securityData['autorun'] = Tools::castValue($datas['autorun']);
             elseif (!isset($datas['autorun']))
                 $securityData['autorun'] = false;
 

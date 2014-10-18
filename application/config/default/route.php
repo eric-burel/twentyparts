@@ -7,9 +7,9 @@ $config = array(
             'fr_FR',
             'en_EN'
         ),
-        'controller' => 'index',
+        'controller' => 'pages',
         'methods' => array(
-            'page' => array('home'),
+            'view' => array('home'),
         )
     ),
     'captcha' => array(
@@ -30,7 +30,6 @@ $config = array(
         ),
         'controller' => 'index',
         'methods' => array(
-            'setAjax' => true,
             'language' => array('[[1]]')
         )
     ),
@@ -54,35 +53,39 @@ $config = array(
             'debugger' => array('[[1]]')
         )
     ),
+    //pages
     'page' => array(
         'regex' => true,
         'rules' => array(
-            'fr_FR/([a-zA-Z0-9_-]+)',
-            'en_EN/([a-zA-Z0-9_-]+)',
+            'fr_FR/pages/([a-zA-Z0-9_-]+)',
+            'en_EN/pages/([a-zA-Z0-9_-]+)',
         ),
-        'controller' => 'index',
+        'controller' => 'pages',
         'methods' => array(
-            'page' => array('[[1]]')
+            'view' => array('[[1]]')
         )
     ),
+    //news
     'new' => array(
         'regex' => true,
         'rules' => array(
             'fr_FR/news/([a-zA-Z0-9_-]+)',
             'en_EN/news/([a-zA-Z0-9_-]+)',
         ),
-        'controller' => 'index',
+        'controller' => 'news',
         'methods' => array(
-            'newView' => array('[[1]]')
+            'view' => array('[[1]]')
         )
     ),
+    // ajax routes
     'contact' => array(
         'rules' => array(
             'contact'
         ),
+        'requireAjax' => true,
+        'requireHttpMethod' => 'POST', //(GET, HEAD, POST, PUT', DELETE, TRACE, OPTIONS, CONNECT, PATCH, optional default is null (all))
         'controller' => 'index',
         'methods' => array(
-            'setAjax' => true,
             'contact'
         )
     ),

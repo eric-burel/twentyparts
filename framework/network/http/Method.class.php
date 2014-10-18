@@ -18,20 +18,20 @@ class Method {
 
     protected static $_methodsList = array(0 => 'GET', 1 => 'HEAD', 2 => 'POST', 3 => 'PUT', 4 => 'DELETE', 5 => 'TRACE', 6 => 'OPTIONS', 7 => 'CONNECT', 8 => 'PATCH');
 
-    public static function isSafeMethod($method) {
+    public static function isSafe($method) {
         // See http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Safe_methods
-        return (self::isValidMethod($method) && ($method == self::HEAD || $method == self::GET || $method == self::TRACE || $method == self::OPTIONS));
+        return (self::isValid($method) && ($method == self::HEAD || $method == self::GET || $method == self::TRACE || $method == self::OPTIONS));
     }
 
-    public static function isSecureMethod($method) {
-        return (self::isValidMethod($method) && $method != self::TRACE);
+    public static function isSecure($method) {
+        return (self::isValid($method) && $method != self::TRACE);
     }
 
-    public static function isValidMethod($method) {
+    public static function isValid($method) {
         return array_key_exists((int) $method, self::$_methodsList);
     }
 
-    public static function isPostMethod($method) {
+    public static function isPost($method) {
         return $method == self::$_methodsList[2];
     }
 

@@ -34,4 +34,6 @@ define('PATH_CACHE_BDD', PATH_CACHE . 'bdd' . DS);
 //Templates
 define('PATH_TEMPLATE_DEFAULT', PATH_VIEWS . 'default' . DS);
 define('PATH_TEMPLATE_DEFAULT_ASSETS', PATH_TEMPLATE_DEFAULT . 'assets' . DS);
+define('PATH_TEMPLATE_V2', PATH_VIEWS . 'v2' . DS);
+define('PATH_TEMPLATE_V2_ASSETS', PATH_TEMPLATE_V2 . 'assets' . DS);
 ?>

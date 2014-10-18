@@ -120,6 +120,8 @@ final class Application {
                 Logger::getInstance()->debug('Current url : ' . Http::getCurrentUrl(), 'router');
                 Logger::getInstance()->debug('Current route : ' . Router::getInstance()->getCurrentRoute(), 'router');
                 Logger::getInstance()->debug('Current route rule : ' . Router::getInstance()->getCurrentRule(), 'router');
+                Logger::getInstance()->debug('Ajax request : ' . (int)Http::isAjax(), 'router');
+                Logger::getInstance()->debug('Ssl request : ' . (int)Http::isHttps(), 'router');
                 Logger::getInstance()->debug('Request dispatched in aproximately : ' . Benchmark::getInstance('router')->stopTime()->getStatsTime() . ' ms', 'router');
                 Logger::getInstance()->debug('Aproximately memory used  : ' . Benchmark::getInstance('router')->stopRam()->getStatsRam() . ' KB', 'router');
 

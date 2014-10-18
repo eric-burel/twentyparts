@@ -16,7 +16,7 @@ class Display implements \SplObserver {
 
     public function __destruct() {
         if (!empty($this->_logs)) {
-            if (!Http::isAjaxRequest()) {
+            if (!Http::isAjax()) {
                 if (!Cli::isCli())
                     echo '<pre>';
                 echo $this->_logs;

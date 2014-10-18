@@ -1,0 +1,54 @@
+html {
+    font-family: "open sans";
+}
+header {
+    height: 50px;
+    background-color: #d04040;
+}
+#header-logo{
+    float: left;
+    margin-left: 10%;
+}
+header .navbar {
+    float: right;
+    margin-right: 10%;
+}
+header .navbar ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    padding-top: 10px;
+}
+header .navbar ul li { 
+    display: inline; 
+    padding-right: 10px;
+
+}
+header .navbar a {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #00baff;
+}
+
+header .navbar a.active {
+    color: white;
+}
+header .navbar a:hover {
+    text-decoration: none;
+    color: white;
+}
+
+
+
+#content {
+    background-color: #eaeaea;
+    min-height: 500px;
+}
+
+
+
+footer {
+    text-align: center;
+    height: 200px;
+    background-color: #d04040;
+}

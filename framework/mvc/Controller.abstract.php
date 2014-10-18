@@ -58,7 +58,7 @@ abstract class Controller {
         $this->_template->setVar('langs', $this->language->getVars(true), false, true);
         $this->_template->setVar('lang', $this->language->getLanguage(), false, true);
         //init assets
-        if (!Http::isAjaxRequest())
+        if (!Http::isAjax())
             $this->_template->initAssets();
         $this->_templateInitialized = true;
         $this->log->debug('Initialize template', 'router');
@@ -163,7 +163,7 @@ abstract class Controller {
     }
 
     public function setAjaxController($ajaxDatasType = self::JSON, $ajaxDatasCache = false, $ajaxAutoAddDatas = array()) {
-        if (!Http::isAjaxRequest())
+        if (!Http::isAjax())
             $this->log->debug('Trying set controller on ajax when resquest isn\'t ajax', 'router');
 
         if ($ajaxDatasType != self::HTML && $ajaxDatasType != self::XML && $ajaxDatasType != self::JSON)

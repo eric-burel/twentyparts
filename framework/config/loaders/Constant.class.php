@@ -28,6 +28,13 @@ class Constant extends Loader {
                 }
                 Logger::getInstance()->debug('Constant : "' . $name . '" already load, was overloaded');
             }
+            if (is_array($value)) {
+                if (empty($value))
+                    $value = null;
+                else
+                    throw new \Exception('Constant value cannot be an array');
+            }
+
             // Cast value
             if (is_string($value))
                 $value = Tools::castValue($value);

@@ -2,14 +2,17 @@
 
 namespace framework\mvc;
 
+use framework\Application;
+use framework\Cli;
+use framework\Language;
 use framework\Logger;
+use framework\mvc\Template;
+use framework\mvc\router\Route;
 use framework\network\Http;
 use framework\network\http\ResponseCode;
 use framework\network\http\Header;
+use framework\network\http\Protocol;
 use framework\utility\Benchmark;
-use framework\mvc\Template;
-use framework\Application;
-use framework\Language;
 
 class Router {
 
@@ -31,26 +34,21 @@ class Router {
         Logger::getInstance()->addGroup('router', 'Router Benchmark and Informations', true);
     }
 
-    public static function addRoute($name, $controller, $rules = array(), $methods = array(), $forceSsl = false, $regex = false, $forceReplace = false) {
-        if (!is_string($name) && !is_int($name))
+    public static function addRoute(Route $route, $forceReplace = false) {
+        if (!is_string($route->getName()) && !is_int($route->getName()))
             throw new \Exception('Route name must be string or integer');
 
-        if (method_exists(self::$_routes, $name)) {
+        if (method_exists(self::$_routes, $route->getName())) {
             if (!$forceReplace)
-                throw new \Exception('Route : "' . $name . '" already defined');
+                throw new \Exception('Route : "' . $route->getName() . '" already defined');
 
-            Logger::getInstance()->debug('Route : "' . $name . '" already defined, was overloaded');
+            Logger::getInstance()->debug('Route : "' . $route->getName() . '" already defined, was overloaded');
         }
         if (!is_object(self::$_routes))
             self::$_routes = new \stdClass();
 
-        self::$_routes->$name = new \stdClass();
-        self::$_routes->$name->name = $name;
-        self::$_routes->$name->forceSsl = $forceSsl;
-        self::$_routes->$name->regex = $regex;
-        self::$_routes->$name->controller = $controller;
-        self::$_routes->$name->rules = $rules;
-        self::$_routes->$name->methods = $methods;
+        $name = $route->getName();
+        self::$_routes->$name = $route;
     }
 
     public static function getRoute($routeName) {
@@ -68,11 +66,8 @@ class Router {
         $route = self::getRoute($routeName);
         if ($route) {
             $this->_setCurrentRoute($routeName);
-            if (!$route->controller)
-                throw new \Exception('Route : "' . $routeName . '" missing datas : controller');
-
             Logger::getInstance()->debug('Run route : "' . $routeName . '"', 'router');
-            $this->runController($route->controller, $route->methods, $vars);
+            $this->_runController($route->getController(), $route->getMethods(), $vars, $route->getRequireSsl(), $route->getRequireAjax(), $route->getAutoSetAjax(), $route->getRequireHttpMethod(), $route->getHttpResponseStatusCode(), $route->getHttpProtocol());
         }
         if ($die)
             exit();
@@ -91,14 +86,14 @@ class Router {
         //config lang and ssl
         if ($lang === null)
             $lang = Language::getInstance()->getLanguage();
-        if ($route->forceSsl)
+        if ($route->getRequireSsl())
             $ssl = true;
 
-        if (empty($route->rules))
+        if (empty($route->getRules()))
             return self::getHost(true, $ssl);
 
         $ruleCount = 0;
-        foreach ($route->rules as &$rule) {
+        foreach ($route->getRules() as &$rule) {
             $matchedRule = self::_matchRule($route, $rule, $lang, $vars, $varsSeparator, $ruleNumber, $ruleCount);
             if ($matchedRule !== false)
                 break;
@@ -117,7 +112,7 @@ class Router {
     public static function getUrls($lang = null, $ssl = false) {
         $urls = new \stdClass();
         foreach (self::$_routes as $route)
-            $urls->{$route->name} = self::getUrl($route->name, array(), $lang, $ssl);
+            $urls->{$route->getName()} = self::getUrl($route->getName(), array(), $lang, $ssl);
 
         return $urls;
     }
@@ -189,13 +184,14 @@ class Router {
             foreach (self::$_routes as $route) {
                 $vars = array();
                 // Check if have rules
-                if (!$route->rules)
+                if (!$route->getRules())
                     continue;
 
                 // each route rules
-                foreach ($route->rules as &$rule) {
+                $rules = $route->getRules();
+                foreach ($rules as &$rule) {
                     Logger::getInstance()->debug('Try rule: "' . $rule . '"', 'router');
-                    if ($route->regex)
+                    if ($route->getRegex())
                         $routeMatch = (boolean) preg_match('`^' . $rule . '$`iu', $request, $vars);
                     else
                         $routeMatch = ($request == $rule);
@@ -203,7 +199,7 @@ class Router {
 
                     if ($routeMatch) {
                         $this->_setCurrentRule($rule);
-                        Logger::getInstance()->debug('Match route : "' . $route->name . '" with rule : "' . $rule . '"', 'router');
+                        Logger::getInstance()->debug('Match route : "' . $route->getName() . '" with rule : "' . $rule . '"', 'router');
                         break;
                     }
                 }
@@ -213,7 +209,7 @@ class Router {
 
                 // run route, and break
                 if ($routeMatch) {
-                    $this->runRoute($route->name, $vars);
+                    $this->runRoute($route->getName(), $vars);
                     break;
                 }
             }
@@ -225,7 +221,59 @@ class Router {
         }
     }
 
-    public function runController($controller, $methods = array(), $vars = array()) {
+    public function show400($die = false) {
+        Header::setResponseStatusCode(ResponseCode::CODE_BAD_REQUEST, true);
+        $this->runRoute('error', array(1 => 400), $die);
+    }
+
+    public function show401($die = false) {
+        Header::setResponseStatusCode(ResponseCode::CODE_UNAUTHORIZED, true);
+        $this->runRoute('error', array(1 => 401), $die);
+    }
+
+    public function show403($die = false) {
+        Header::setResponseStatusCode(ResponseCode::CODE_FORBIDDEN, true, true, Protocol::PROTOCOL_VERSION_1_0);
+        $this->runRoute('error', array(1 => 403), $die);
+    }
+
+    public function show404($die = false) {
+        // Set Header
+        // Use http protocol 1.0 look this : http://stackoverflow.com/questions/2769371/404-header-http-1-0-or-1-1
+        // And http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
+        // If use Http 1.1 protocol, header connection is keep-alive, else is close
+        Header::setResponseStatusCode(ResponseCode::CODE_NOT_FOUND, true, true, Protocol::PROTOCOL_VERSION_1_0);
+        $this->runRoute('error', array(1 => 404), $die);
+    }
+
+    public function show405($die = false) {
+        Header::setResponseStatusCode(ResponseCode::CODE_METHOD_NOT_ALLOWED, true, true, Protocol::PROTOCOL_VERSION_1_0);
+        $this->runRoute('error', array(1 => 404), $die);
+    }
+
+    public function show500($die = false) {
+        Header::setResponseStatusCode(ResponseCode::CODE_INTERNAL_SERVER_ERROR, true);
+        $this->runRoute('error', array(1 => 500), $die);
+    }
+
+    public function show503($die = false) {
+        Header::setResponseStatusCode(ResponseCode::CODE_SERVICE_UNAVAILABLE, true);
+        $this->runRoute('error', array(1 => 503), $die);
+    }
+
+    public function showDebugger($isException, $die = false) {
+        Header::setResponseStatusCode(ResponseCode::CODE_INTERNAL_SERVER_ERROR, true);
+        $this->runRoute('debugger', array(1 => $isException), $die);
+    }
+
+    public function getCurrentRule() {
+        return $this->_currentRule;
+    }
+
+    public function getCurrentRoute() {
+        return $this->_currentRoute;
+    }
+
+    protected function _runController($controller, $methods = array(), $vars = array(), $requireSsl = false, $requireAjax = false, $autoSetAjax = true, $requireHttpMethod = null, $httpResponseStatusCode = null, $httpProtocol = null) {
         $controllerExplode = explode($this->getNamespaceSeparator(), (string) $controller);
         if (is_array($controllerExplode) && count($controllerExplode) > 1) {
             $controllerName = $this->getNamespaceSeparator() . ucfirst(array_pop($controllerExplode));
@@ -256,6 +304,28 @@ class Router {
                 throw new \Exception('Controller "' . $controller . '" must be implement method "Diplay');
             if (!$inst->hasMethod('initTemplate'))
                 throw new \Exception('Controller "' . $controller . '" must be implement method "initTemplate');
+        }
+
+        if (!Cli::isCli()) {
+            if (!Http::isHttps() && $requireSsl) {
+                Logger::getInstance()->debug('Controller "' . $controller . '" need ssl http request', 'router');
+                $this->show400(true);
+            }
+            if (!is_null($requireHttpMethod)) {
+                if ($requireHttpMethod != Http::getMethod()) {
+                    Logger::getInstance()->debug('Controller "' . $controller . '" invalid http method');
+                    $this->show405(true);
+                }
+            }
+            if (!Http::isAjax() && $requireAjax) {
+                Logger::getInstance()->debug('Controller "' . $controller . '" need ajax http request');
+                $this->show400(true);
+            }
+            if (Http::isAjax() && $autoSetAjax)
+                $ctrl->setAjaxController();
+
+            if (!is_null($httpResponseStatusCode) || !is_null($httpProtocol))
+                Header::setResponseStatusCode(is_null($httpResponseStatusCode) ? 200 : $httpResponseStatusCode, true, true, $httpProtocol);
         }
 
         if ($methods) {
@@ -298,73 +368,21 @@ class Router {
         }
     }
 
-    public function show400($die = false) {
-        Header::setResponseStatusCode(ResponseCode::CODE_BAD_REQUEST, true);
-        $this->runRoute('error', array(1 => 400), $die);
-    }
-
-    public function show401($die = false) {
-        Header::setResponseStatusCode(ResponseCode::CODE_UNAUTHORIZED, true);
-        $this->runRoute('error', array(1 => 401), $die);
-    }
-
-    public function show403($die = false) {
-        Header::setResponseStatusCode(ResponseCode::CODE_FORBIDDEN, true, true, Http::PROTOCOL_VERSION_1_0);
-        $this->runRoute('error', array(1 => 403), $die);
-    }
-
-    public function show404($die = false) {
-        // Set Header
-        // Use http protocol 1.0 look this : http://stackoverflow.com/questions/2769371/404-header-http-1-0-or-1-1
-        // And http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
-        // If use Http 1.1 protocol, header connection is keep-alive, else is close
-        Header::setResponseStatusCode(ResponseCode::CODE_NOT_FOUND, true, true, Http::PROTOCOL_VERSION_1_0);
-        $this->runRoute('error', array(1 => 404), $die);
-    }
-
-    public function show405($die = false) {
-        Header::setResponseStatusCode(ResponseCode::CODE_METHOD_NOT_ALLOWED, true, true, Http::PROTOCOL_VERSION_1_0);
-        $this->runRoute('error', array(1 => 404), $die);
-    }
-
-    public function show500($die = false) {
-        Header::setResponseStatusCode(ResponseCode::CODE_INTERNAL_SERVER_ERROR, true);
-        $this->runRoute('error', array(1 => 500), $die);
-    }
-
-    public function show503($die = false) {
-        Header::setResponseStatusCode(ResponseCode::CODE_SERVICE_UNAVAILABLE, true);
-        $this->runRoute('error', array(1 => 503), $die);
-    }
-
-    public function showDebugger($isException, $die = false) {
-        Header::setResponseStatusCode(ResponseCode::CODE_INTERNAL_SERVER_ERROR, true);
-        $this->runRoute('debugger', array(1 => $isException), $die);
-    }
-
-    public function getCurrentRule() {
-        return $this->_currentRule;
-    }
-
-    public function getCurrentRoute() {
-        return $this->_currentRoute;
-    }
-
     protected static function _matchRule($route, $rule, $lang, $vars, $varsSeparator, $ruleNumber, $ruleCount) {
         $matched = false;
         $url = '';
         $args = preg_split('#(\(.+\))#iuU', $rule);
         foreach ($args as $key => $value) {
             //match by lang
-            if ($lang !== null && $key == 0 && (stripos($value, $lang . $varsSeparator) !== false  || $lang . $varsSeparator == $value || $lang == $value))
+            if ($lang !== null && $key == 0 && (stripos($value, $lang . $varsSeparator) !== false || $lang . $varsSeparator == $value || $lang == $value))
                 $matched = true;
             // only one rule or rule number
-            elseif (count($route->rules) == 1 || $ruleNumber === $ruleCount)
+            elseif (count($route->getRules()) == 1 || $ruleNumber === $ruleCount)
                 $matched = true;
 
             //add argument (if exist)
             if ($matched) {
-                $arg = array_key_exists($key, $vars) && $route->regex ? rawurlencode($vars[$key]) : '';
+                $arg = array_key_exists($key, $vars) && $route->getRegex() ? rawurlencode($vars[$key]) : '';
                 //empty arg
                 if ($arg == '' && $value == $varsSeparator)
                     continue;

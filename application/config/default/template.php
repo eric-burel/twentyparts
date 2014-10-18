@@ -4,7 +4,7 @@ $config = array(
     'default' => array(
         'path' => '[PATH_TEMPLATE_DEFAULT]',
         'charset' => 'UTF-8',
-        'adaptater' => 'php',//class name (must be implement \framework\mvc\template\IAdaptater)
+        'adaptater' => 'php', //class name (must be implement \framework\mvc\template\IAdaptater)
         'autoSanitize' => false,
         'assets' => array(
             'img' => array(
@@ -29,6 +29,44 @@ $config = array(
             ),
             'js' => array(
                 'directory' => '[PATH_TEMPLATE_DEFAULT_ASSETS]javascripts[DS]',
+                'loadUrls' => true,
+                'loadLangs' => true,
+                'cache' => array(
+                    'compress' => false,
+                    'rewriteUrls' => true,
+                    'name' => 'default'//cache config name
+                )
+            )
+        )
+    ),
+    'v2' => array(
+        'path' => '[PATH_TEMPLATE_V2]',
+        'charset' => 'UTF-8',
+        'adaptater' => 'php', //class name (must be implement \framework\mvc\template\IAdaptater)
+        'autoSanitize' => false,
+        'assets' => array(
+            'img' => array(
+                'directory' => '[PATH_TEMPLATE_V2_ASSETS]images[DS]'
+            ),
+            'sound' => array(
+                'directory' => '[PATH_TEMPLATE_V2_ASSETS]sounds[DS]'
+            ),
+            'font' => array(
+                'directory' => '[PATH_TEMPLATE_V2_ASSETS]fonts[DS]'
+            ),
+            'module' => array(
+                'directory' => '[PATH_TEMPLATE_V2_ASSETS]modules[DS]'
+            ),
+            'css' => array(
+                'directory' => '[PATH_TEMPLATE_V2_ASSETS]css[DS]',
+                'cache' => array(
+                    'compress' => true,
+                    'rewriteUrls' => true,
+                    'name' => 'default'//cache name
+                )
+            ),
+            'js' => array(
+                'directory' => '[PATH_TEMPLATE_V2_ASSETS]javascripts[DS]',
                 'loadUrls' => true,
                 'loadLangs' => true,
                 'cache' => array(

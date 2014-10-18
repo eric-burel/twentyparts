@@ -11,7 +11,7 @@
                     <?php include $this->getPath() . 'forms' . DS . 'register.tpl.php'; ?>
                 <?php } ?>
                 <!-- News -->
-                <h2>Nouvelles du front</h2>
+                <h2 class="ucfirst"><a href="<?php echo $this->getUrl('page', array('news')); ?>" ><?php echo $this->langs->frontoffice_23; ?></a></h2>
                 <?php if (is_array($this->news) && count($this->news) > 0) { ?>
                     <?php foreach ($this->news as $new) { ?>
                         <?php echo $new->link; ?>

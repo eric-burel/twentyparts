@@ -22,7 +22,7 @@ abstract class Model {
     const ORDER_BY_DESC = 'DESC';
     const ORDER_BY_ASC = 'ASC';
 
-    public static function factoryManager($name, $dbName, $dbTable) {
+    public static function factoryManager($name, $dbTable = null, $dbName = 'default') {
         // Factory model
         if (!is_string($name))
             throw new \Exception('Model name must be a string');
@@ -38,7 +38,11 @@ abstract class Model {
 
         $manager = $inst->newInstance();
         $manager->setModelDBName($dbName);
+
+        if (is_null($dbTable))
+            $dbTable = property_exists($manager, '_table') ? $manager->_table : str_replace('manager', '', strtolower(str_replace('models\\', '', get_class($manager))));
         $manager->setModelDBTable($dbTable);
+
         $manager->setEngine($manager->getDb(true));
         return $manager;
     }

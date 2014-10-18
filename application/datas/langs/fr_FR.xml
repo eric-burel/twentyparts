@@ -38,7 +38,7 @@
     <frontoffice_1>pseudonyme</frontoffice_1>
     <frontoffice_2>mot de passe</frontoffice_2>
     <frontoffice_3>connexion</frontoffice_3>
-    <frontoffice_4>index</frontoffice_4>
+    <frontoffice_4>accueil</frontoffice_4>
     <frontoffice_5>histoires</frontoffice_5>
     <frontoffice_6>f.a.q</frontoffice_6>
     <frontoffice_7>partenaires</frontoffice_7>
@@ -57,6 +57,7 @@
     <frontoffice_20>Code de sécurité audio</frontoffice_20>
     <frontoffice_21>Administration</frontoffice_21>
     <frontoffice_22>Déconnexion</frontoffice_22>
+    <frontoffice_23>Nouvelles du front</frontoffice_23>
     
     <validate_required>ce champ est requis</validate_required>
     <validate_email>email non valide</validate_email>
@@ -65,5 +66,5 @@
     <validate_chars>caractères</validate_chars>
     <validate_security>code securité invalid</validate_security>
     <validate_error>une erreur est survenue</validate_error>
-    <validate_success>message envoyé avec success</validate_success>
+    <validate_success>votre message a été envoyé. Nous tâcherons d'y répondre dans les plus brefs délais.</validate_success>
 </vars>

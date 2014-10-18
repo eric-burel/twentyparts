@@ -8,7 +8,7 @@ $config = array(
             'form1' => array(
                 'protection' => array(
                     'csrf' => array(
-                        'urlReferer' => array('page', 'register'), //routes name
+                        'urlReferer' => array('page'), //routes name
                         'timeValidity' => 600 //second
                     ),
                     'captcha' => array(

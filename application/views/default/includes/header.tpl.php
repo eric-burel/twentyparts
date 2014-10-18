@@ -30,7 +30,8 @@
 <!-- Navigation bar -->
 <nav id="nav">
     <table id="nav_table">
-        <tbody><tr>
+        <tbody>
+            <tr>
                 <td><a href="<?php echo $this->getUrl('index'); ?>" class="nav_link"><div class="button nav_button ucfirst"><span class="nav_text"><?php echo $this->langs->frontoffice_4; ?></span></div></a></td>
                 <td><a href="<?php echo $this->getUrl('story'); ?>" class="nav_link"><div class="button nav_button part_edit ucfirst"><span class="nav_text"><?php echo $this->langs->frontoffice_5; ?></span></div></a></td>
                 <td><a href="<?php echo $this->getUrl('page', array('faq')); ?>" class="nav_link"><div class="button nav_button capitalize"><span class="nav_text"><?php echo $this->langs->frontoffice_6; ?></span></div></a></td>

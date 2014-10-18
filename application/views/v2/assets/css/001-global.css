@@ -1,0 +1,26 @@
+.hide {
+    display: none !important;
+}
+.ucfirst:first-letter {
+    text-transform: uppercase;
+}
+.capitalize {
+    text-transform: uppercase;
+}
+.float-left {
+    float: left;
+}
+.float-right {
+    float: right;
+}
+.black {
+    color: black !important;
+}
+#contacts_form input {
+    min-width: 250px;
+    float: right;
+}
+.error {
+    padding-left: 5px;
+    display: block;
+}

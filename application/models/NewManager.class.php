@@ -12,7 +12,7 @@ class NewManager extends Model implements IModelManager {
     protected $_lang;
 
     public function __construct() {
-        $this->_lang = self::factoryManager('lang', 'default', 'lang');
+        $this->_lang = self::factoryManager('lang');
     }
 
     public function create(NewObject $new, $returnLastId = true) {
@@ -23,22 +23,26 @@ class NewManager extends Model implements IModelManager {
         $contentId = $this->_lang->create($new->langContent, true);
 
         // create new
-        $this->_engine->set('INSERT INTO ' . $this->getModelDBTable() . ' VALUES("",?,?,?,?,?,?)');
-        $this->_engine->bind($titleId, Database::PARAM_INT);
-        $this->_engine->bind($descrId, Database::PARAM_INT);
-        $this->_engine->bind($keywordsId, Database::PARAM_INT);
-        $this->_engine->bind($contentId, Database::PARAM_INT);
-        $this->_engine->bind($new->date, Database::PARAM_STR);
-        $this->_engine->bind($new->generateSlug(), Database::PARAM_STR);
-        $this->_engine->execute();
+        $sql = 'INSERT INTO ' . $this->getModelDBTable() . ' VALUES("",?,?,?,?,?,?)';
+        $lastId = $this->execute($sql, array(
+            $titleId => Database::PARAM_INT,
+            $descrId => Database::PARAM_INT,
+            $keywordsId => Database::PARAM_INT,
+            $contentId => Database::PARAM_INT,
+            $new->date => Database::PARAM_STR,
+            $new->generateSlug() => Database::PARAM_STR), $returnLastId
+        );
+
         if ($returnLastId)
-            return $this->_engine->lastInsertId();
+            return $lastId;
     }
 
     public function read($id, $isSlug = false) {
         $where = ' WHERE ' . ($isSlug ? 'slug' : 'id') . ' = ?';
         $sql = 'SELECT * FROM ' . $this->getModelDBTable() . $where;
-        $this->execute($sql, array($id => $isSlug ? Database::PARAM_STR : Database::PARAM_INT));
+        $this->execute($sql, array(
+            $id => $isSlug ? Database::PARAM_STR : Database::PARAM_INT)
+        );
         $datas = $this->_engine->fetch(Database::FETCH_ASSOC);
         if (empty($datas))
             return null;
@@ -56,6 +60,7 @@ class NewManager extends Model implements IModelManager {
     public function readAll() {
         $this->execute('SELECT * FROM ' . $this->getModelDBTable());
         $datas = $this->_engine->fetchAll(Database::FETCH_ASSOC);
+
         $all = array();
         foreach ($datas as $data)
             $all[] = $this->read($data['id']);
@@ -70,17 +75,17 @@ class NewManager extends Model implements IModelManager {
         $this->_lang->update($new->langTitle);
         $this->_lang->update($new->langContent);
 
-
         //update new
-        $this->_engine->set('UPDATE ' . $this->getModelDBTable() . ' SET titleId = ?, descrId = ?, keywordsId = ?, contentId = ?, date = ?, slug = ? WHERE id = ?');
-        $this->_engine->bind($new->titleId, Database::PARAM_INT);
-        $this->_engine->bind($new->descrId, Database::PARAM_INT);
-        $this->_engine->bind($new->keywordsId, Database::PARAM_INT);
-        $this->_engine->bind($new->contentId, Database::PARAM_INT);
-        $this->_engine->bind($new->date, Database::PARAM_BOOL);
-        $this->_engine->bind($new->generateSlug($new->slug), Database::PARAM_STR);
-        $this->_engine->bind($new->id, Database::PARAM_INT);
-        $this->_engine->execute();
+        $sql = 'UPDATE ' . $this->getModelDBTable() . ' SET titleId = ?, descrId = ?, keywordsId = ?, contentId = ?, date = ?, slug = ? WHERE id = ?';
+        $this->execute($sql, array(
+            $new->titleId => Database::PARAM_INT,
+            $new->descrId => Database::PARAM_INT,
+            $new->keywordsId => Database::PARAM_INT,
+            $new->contentId => Database::PARAM_INT,
+            $new->date => Database::PARAM_STR,
+            $new->generateSlug($new->slug) => Database::PARAM_STR,
+            $new->id => Database::PARAM_INT)
+        );
     }
 
     public function delete($id) {
@@ -95,7 +100,9 @@ class NewManager extends Model implements IModelManager {
         if (!is_null($lastSlug))
             $sql .= ' AND slug != "' . $lastSlug . '"';
 
-        $this->execute($sql, array($slug => Database::PARAM_STR), false, false);
+        $this->execute($sql, array(
+            $slug => Database::PARAM_STR), false, false
+        );
         return $this->_engine->rowCount();
     }
 
