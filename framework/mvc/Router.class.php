@@ -89,11 +89,12 @@ class Router {
         if ($route->getRequireSsl())
             $ssl = true;
 
-        if (empty($route->getRules()))
+        $rules = $route->getRules();
+        if (empty($rules))
             return self::getHost(true, $ssl);
 
         $ruleCount = 0;
-        foreach ($route->getRules() as &$rule) {
+        foreach ($rules as &$rule) {
             $matchedRule = self::_matchRule($route, $rule, $lang, $vars, $varsSeparator, $ruleNumber, $ruleCount);
             if ($matchedRule !== false)
                 break;

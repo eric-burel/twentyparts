@@ -1,6 +1,13 @@
 (function ($) {
     $(document).ready(function () {
-        validateForms();
+        $(window).scroll(function () {
+            if ($(this).scrollTop() < 40)
+                $('.nicescroll-rails').addClass('hide');
+            else
+                $('.nicescroll-rails').removeClass('hide');
+        });
+        $("html").niceScroll({styler: "fb", cursorcolor: "#d04040", cursorwidth: '10', cursorborderradius: '10px', background: '#404040', spacebarenabled: false, cursorborder: '', zindex: '99999'});
+        $('.nicescroll-rails').addClass('hide');
 
         //refresh captcha
         $("body").on("click", ".refresh-captcha", function () {

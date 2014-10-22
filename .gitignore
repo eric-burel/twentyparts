@@ -1,3 +1,9 @@
 /application/cache/core/
 /application/cache/default/
 /application/config/localhost/
+/application/config/www.twentyparts.com/
+/v1/
+/application/cache/bdd/
+/application/config/www.hall88.fr.ht
+/application/config/www.midichlorians.fr/database.php
+/application/config/www.midichlorians.fr/constant.php

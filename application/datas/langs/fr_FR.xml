@@ -43,7 +43,7 @@
     <frontoffice_6>f.a.q</frontoffice_6>
     <frontoffice_7>partenaires</frontoffice_7>
     <frontoffice_8>réglages</frontoffice_8>
-    <frontoffice_9>contacts</frontoffice_9>
+    <frontoffice_9>contact</frontoffice_9>
     <frontoffice_10>email</frontoffice_10>
     <frontoffice_11>mot de passe(2)</frontoffice_11>
     <frontoffice_12>cliquez pour rafraichir l'image</frontoffice_12>
@@ -53,11 +53,11 @@
     <frontoffice_16>adresse mail</frontoffice_16>
     <frontoffice_17>sujet</frontoffice_17>
     <frontoffice_18>message</frontoffice_18>
-    <frontoffice_19>Code de sécurité</frontoffice_19>
-    <frontoffice_20>Code de sécurité audio</frontoffice_20>
-    <frontoffice_21>Administration</frontoffice_21>
-    <frontoffice_22>Déconnexion</frontoffice_22>
-    <frontoffice_23>Nouvelles du front</frontoffice_23>
+    <frontoffice_19>code de sécurité</frontoffice_19>
+    <frontoffice_20>code de sécurité audio</frontoffice_20>
+    <frontoffice_21>administration</frontoffice_21>
+    <frontoffice_22>déconnexion</frontoffice_22>
+    <frontoffice_23>nouvelles du front</frontoffice_23>
     
     <validate_required>ce champ est requis</validate_required>
     <validate_email>email non valide</validate_email>
